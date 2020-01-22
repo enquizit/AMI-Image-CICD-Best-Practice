@@ -1,0 +1,6 @@
+pathlib_mate            # for path management
+configirl               # for centralized config management
+troposphere_mate        # for cloudformation
+PyYAML                  # for YAML file read/write
+fabric2                 # for executing command on remote server from local
+patchwork               # for directory sync between local and remote
