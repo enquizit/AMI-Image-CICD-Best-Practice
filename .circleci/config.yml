@@ -1,0 +1,42 @@
+version: 2
+jobs:
+  pre-setup:
+    docker:
+      - image: circleci/python:3.6.1
+    steps:
+      - checkout
+      - run:
+          name:
+          command: |
+            echo "check out code complete!"
+  test1:
+    docker:
+      - image: circleci/python:3.6.1
+    steps:
+      - checkout
+      - run:
+          name:
+          command: |
+            python test.py
+            echo "test1 complete!"
+  test2:
+    docker:
+      - image: circleci/python:3.6.1
+    steps:
+      - checkout
+      - run:
+          name:
+          command: |
+            python test.py
+            echo "test2 complete!"
+workflows:
+  version: 2
+  my-workflow:
+    jobs:
+      - pre-setup
+      - test1:
+          requires:
+            - pre-setup
+      - test2:
+          requires:
+            - pre-setup
