@@ -1,42 +1,16 @@
 version: 2
 jobs:
-  pre-setup:
+  amzlinux-python3.6.8:
     docker:
-      - image: circleci/python:3.6.1
+      - image: circleci/python:3.6.8
     steps:
       - checkout
       - run:
           name:
           command: |
-            echo "check out code complete!"
-  test1:
-    docker:
-      - image: circleci/python:3.6.1
-    steps:
-      - checkout
-      - run:
-          name:
-          command: |
-            python test.py
-            echo "test1 complete!"
-  test2:
-    docker:
-      - image: circleci/python:3.6.1
-    steps:
-      - checkout
-      - run:
-          name:
-          command: |
-            python test.py
-            echo "test2 complete!"
+            sudo bash bin/packer-build.sh amzlinux-python3.6.8
 workflows:
   version: 2
   my-workflow:
     jobs:
-      - pre-setup
-      - test1:
-          requires:
-            - pre-setup
-      - test2:
-          requires:
-            - pre-setup
+      - amzlinux-python3.6.8
